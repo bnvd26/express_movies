@@ -1,0 +1,14 @@
+{
+  "name": "express_movies",
+  "version": "1.0.0",
+  "description": "app for movie",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Benjamin Ad",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
