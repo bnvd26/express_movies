@@ -31,6 +31,10 @@ app.get('/movies/add', (req, res) => {
   res.send('formulaire d\'ajout');
 })
 
+app.get('/movies/search', (req, res) => {
+  res.render('movies/search')
+})
+
 app.get('/movies/:id', (req, res) => {
   const id = req.params.id;
   res.render('movies/show', { movieId : id });
