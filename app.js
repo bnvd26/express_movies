@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const jsonWebToken = require('jsonwebtoken')
 
 const PORT = 3000;
 
@@ -43,6 +44,28 @@ app.post('/movies/add', urlencodedParser, (req, res) => {
 app.get('/movies/search', (req, res) => {
   res.render('movies/search')
 })
+
+// FAKE USER
+
+const fakeUser = { email: 'benj@gmail.com', password: 'password'};
+const secret = 'zeoi8ijfz43oeohfa123zoefhazi123enkczio098vch';
+
+app.get('/login', (req, res) => {
+  res.render('login/login')
+})
+
+app.post('/login', urlencodedParser, (req, res) => {
+  if(!req.body) {
+    res.sendStatus(500)
+  }
+  if(fakeUser.email === req.body.email && fakeUser.password === req.body.password) {
+    const myToken = jsonWebToken.sign({ iss: 'localhost:3000', user: 'Ben', role:'moderator'}, secret )
+    res.json(myToken)
+    console.log('ok')
+  }
+})
+
+
 
 app.get('/movies/:id', (req, res) => {
   const id = req.params.id;
