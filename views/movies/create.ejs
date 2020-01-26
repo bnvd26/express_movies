@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+<p>Créer un film</p>
+<div>
+  <form action="/movies/add" method="post">
+    <label for="movieTitle">Titre du film </label>
+    <input type="text" name="movieTitle" id="movieTitle">
+    <label for="movieYear">Année du film </label>
+    <input type="text" name="movieYear" id="movieYear">
+    <button type="submit">Ajouter</button>
+  </form>
+</div>
+<%- include('../partials/footer') %>

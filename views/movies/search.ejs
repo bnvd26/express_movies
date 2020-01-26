@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+<p>Recherche d'un film :</p>
+<div>
+  <input type="text" name="movieName" id="movieName" placeholder="Saisissez un titre de film...">
+  <button id="btnSearch">Chercher</button>
+</div>
+<div id="results">
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.min.js" type="text/javascript"></script>
+
+<script>
+
+  const API_KEY = "4a63d9144114c8a0fc5bba03bb1b8ca3";
+
+  const inputMovieName = document.querySelector('#movieName')
+
+  const btnSearch = document.querySelector('#btnSearch')
+
+  btnSearch.addEventListener('click', search);
+
+  let resultDiv = document.querySelector('#results')
+
+  function search () {
+    const query = `http://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${inputMovieName.value}`;
+    axios.get(query) 
+      .then(function(response){
+        console.log(response)
+        displayResults(response.data.results)
+    })
+  }
+
+  function displayResults(results) {
+    resultDiv.innerHTML = '';
+    for(let result of results) {
+      let movieDiv = document.createElement('div');
+      movieDiv.innerHTML = result.title;
+      resultDiv.appendChild(movieDiv);
+    }
+  }
+
+</script>
+<%- include('../partials/footer') %>
